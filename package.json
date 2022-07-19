@@ -1,8 +1,10 @@
 {
   "name": "youtube-downloader",
+  "type": "module",
   "version": "0.9.0",
   "description": "Personal tool utilising ytdl-core for ease of downloading videos and songs from YouTube",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
