@@ -1,0 +1,26 @@
+{
+  "name": "youtube-downloader",
+  "version": "0.9.0",
+  "description": "Personal tool utilising ytdl-core for ease of downloading videos and songs from YouTube",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ghostday/youtube-downloader.git"
+  },
+  "dependencies": {
+    "readline": "^1.3.0",
+    "ytdl-core": "^4.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.6"
+  },
+  "author": "Ghostday",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ghostday/youtube-downloader/issues"
+  },
+  "homepage": "https://github.com/Ghostday/youtube-downloader#readme"
+}
