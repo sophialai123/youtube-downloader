@@ -24,9 +24,9 @@ export async function askFormats() {
   switch (answer) {
     case "1":
       return "videoandaudio"
-    case 2:
+    case "2":
       return "audioonly"
-    case 3:
+    case "3":
       return "videoonly"
     default:
       break;
