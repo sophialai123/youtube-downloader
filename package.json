@@ -1,10 +1,13 @@
 {
   "name": "youtube-downloader",
+  "type": "module",
   "version": "0.9.0",
   "description": "Personal tool utilising ytdl-core for ease of downloading videos and songs from YouTube",
   "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +18,8 @@
     "ytdl-core": "^4.11.0"
   },
   "devDependencies": {
-    "@types/node": "^18.0.6"
+    "@types/node": "^18.0.6",
+    "typescript": "^4.7.4"
   },
   "author": "Ghostday",
   "license": "MIT",

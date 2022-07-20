@@ -5,26 +5,34 @@ import ytdl from 'ytdl-core';
 import { askForVideo, askFormats, grabVidDetails, selectFormat } from './lib.js';
 import url from "node:url";
 import fs from "node:fs";
-const filePath = url.fileURLToPath(import.meta.url);
-const dirName = path.dirname(filePath);
-const answer = await askForVideo();
-const formatAnswer = await askFormats();
-const video = await grabVidDetails(answer);
-const formats = ytdl.filterFormats(video.formats, formatAnswer);
-const selectedFormat = await selectFormat(formats);
-downloadVideo(video.videoDetails, selectedFormat);
-function downloadVideo(vidDeets, qual) {
-    const vUrl = vidDeets.video_url;
-    const vName = vidDeets.title;
+
+const filePath = url.fileURLToPath(import.meta.url)
+const dirName = path.dirname(filePath)
+
+const answer = await askForVideo()
+const formatAnswer = await askFormats()
+const video = await grabVidDetails(answer)
+const formats = ytdl.filterFormats(video.formats, formatAnswer)
+const selectedFormat = await selectFormat(formats)
+
+downloadVideo(video.videoDetails, selectedFormat)
+
+function downloadVideo(vidDeets: ytdl.MoreVideoDetails, qual: string) {
+    const vUrl = vidDeets.video_url
+    const vName = vidDeets.title
+
     const output = path.resolve(dirName, `videos/${vName}.mp4`);
+
     // If directory doesn't exist, create it
     if (!fs.existsSync(path.resolve(dirName, 'videos'))) {
         fs.mkdirSync(path.resolve(dirName, 'videos'));
     }
+
     const video = ytdl(vUrl, {
         quality: qual
     });
-    let starttime;
+
+    let starttime: number
     video.pipe(createWriteStream(output));
     video.once('response', () => {
         starttime = Date.now();
@@ -42,6 +50,6 @@ function downloadVideo(vidDeets, qual) {
     });
     video.on('end', () => {
         process.stdout.write('\n\n');
-        process.exit(1);
+        process.exit(1)
     });
 }
