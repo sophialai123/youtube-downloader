@@ -3,9 +3,10 @@ import path from "node:path";
 import { createWriteStream } from 'fs';
 import ytdl from 'ytdl-core';
 import { askForVideo, askFormats, grabVidDetails, selectFormat } from './lib.js';
-import { fileURLToPath } from "node:url";
+import url from "node:url";
+import fs from "node:fs";
 
-const filePath = fileURLToPath(import.meta.url)
+const filePath = url.fileURLToPath(import.meta.url)
 const dirName = path.dirname(filePath)
 
 const answer = await askForVideo()
@@ -21,6 +22,11 @@ function downloadVideo(vidDeets: ytdl.MoreVideoDetails, qual: string) {
     const vName = vidDeets.title
 
     const output = path.resolve(dirName, `videos/${vName}.mp4`);
+
+    // If directory doesn't exist, create it
+    if (!fs.existsSync(path.resolve(dirName, 'videos'))) {
+        fs.mkdirSync(path.resolve(dirName, 'videos'));
+    }
 
     const video = ytdl(vUrl, {
         quality: qual
